@@ -1,0 +1,4 @@
+lock.c:3:6:lockInterruptDisable_TIM3	8	static
+lock.c:10:6:lockInterruptEnable_TIM3	16	static
+lock.c:17:6:lockInterruptDisable_Gyro_Delay	8	static
+lock.c:27:6:lockInterruptEnable_Gyro_Delay	8	static
