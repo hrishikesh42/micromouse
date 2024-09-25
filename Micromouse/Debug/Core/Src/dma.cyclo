@@ -1,2 +1,0 @@
-dma.c:12:6:MX_DMA_Init	1
-dma.c:40:6:DMA2_Stream4_IRQHandler	1

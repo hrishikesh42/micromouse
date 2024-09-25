@@ -1,9 +1,0 @@
-encoder.c:13:6:encoderStart	1
-encoder.c:19:10:getLeftEncoderValue	1
-encoder.c:24:10:getRightEncoderValue	1
-encoder.c:28:6:setLeftEncoderValue	1
-encoder.c:32:6:setRightEncoderValue	1
-encoder.c:36:6:resetLeftEncoder	1
-encoder.c:41:6:resetRightEncoder	1
-encoder.c:46:6:advanceTicks	4
-encoder.c:61:6:uncontrolledAdvanceTicks	2
