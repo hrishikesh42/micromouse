@@ -16,8 +16,8 @@ void lockInterruptEnable_TIM3() {
 }
 void lockInterruptDisable_Gyro_Delay() {
 	/* Peripheral clock enable */
-	__HAL_RCC_TIM11_CLK_DISABLE();
-	__HAL_RCC_TIM10_CLK_DISABLE();
+//	__HAL_RCC_TIM11_CLK_DISABLE();
+//	__HAL_RCC_TIM10_CLK_DISABLE();
 
 
 	/* TIM3 interrupt DeInit */
@@ -26,8 +26,8 @@ void lockInterruptDisable_Gyro_Delay() {
 }
 void lockInterruptEnable_Gyro_Delay() {
 	/* Peripheral clock enable */
-	__HAL_RCC_TIM10_CLK_ENABLE();
-	__HAL_RCC_TIM11_CLK_ENABLE();
+//	__HAL_RCC_TIM10_CLK_ENABLE();
+//	__HAL_RCC_TIM11_CLK_ENABLE();
 	/* TIM3 interrupt Init */
 	HAL_NVIC_SetPriority(TIM1_UP_TIM10_IRQn, 0, 0);
 	HAL_NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);

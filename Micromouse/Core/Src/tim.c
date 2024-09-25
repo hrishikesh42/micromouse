@@ -52,14 +52,14 @@ void MX_TIM2_Init(void)
 	sConfig.IC2Filter = 5;
 	if (HAL_TIM_Encoder_Init(&htim2, &sConfig) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
 	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
 	if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 }
 
@@ -69,7 +69,7 @@ void MX_TIM3_Init(void)
 	TIM_ClockConfigTypeDef sClockSourceConfig;
 	TIM_MasterConfigTypeDef sMasterConfig;
 
-	__TIM3_CLK_ENABLE();
+//	__TIM3_CLK_ENABLE();
 
 	htim3.Instance = TIM3;
 	htim3.Init.Prescaler = 8399;
@@ -80,7 +80,7 @@ void MX_TIM3_Init(void)
 	htim3.Init.RepetitionCounter = 0;
 	if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
 	if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK) {
@@ -110,25 +110,25 @@ void MX_TIM4_Init(void)
 	htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 	if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
 	if (HAL_TIM_ConfigClockSource(&htim4, &sClockSourceConfig) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	if (HAL_TIM_PWM_Init(&htim4) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
 	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
 	if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	sConfigOC.OCMode = TIM_OCMODE_PWM1;
@@ -137,22 +137,22 @@ void MX_TIM4_Init(void)
 	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 
 	HAL_TIM_MspPostInit(&htim4);

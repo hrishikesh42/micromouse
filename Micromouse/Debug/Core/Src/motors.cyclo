@@ -1,7 +1,7 @@
-motors.c:29:6:leftMotorPWMChangeForward	3
-motors.c:57:6:rightMotorPWMChangeForward	3
-motors.c:84:6:leftMotorPWMChangeBackward	3
-motors.c:110:6:rightMotorPWMChangeBackward	3
+motors.c:29:6:leftMotorPWMChangeForward	1
+motors.c:57:6:rightMotorPWMChangeForward	1
+motors.c:84:6:leftMotorPWMChangeBackward	1
+motors.c:110:6:rightMotorPWMChangeBackward	1
 motors.c:136:6:rightTurn	3
 motors.c:157:6:leftTurn	3
 motors.c:177:6:backward180Turn	3

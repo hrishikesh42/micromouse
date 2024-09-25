@@ -158,11 +158,11 @@ int main(void)
       init_distance_maze(&distances, &target, 0);
       logicalFlood(&distances, &c, &cell_walls_info, direction, direction, &update_stack);
       direction = floodFill(&distances, &c, &cell_walls_info, direction, direction, &update_stack);
-      direction = adjustDirection(direction);
+//      direction = adjustDirection(direction);
       init_distance_maze(&distances, &c, 1);
       logicalFlood(&distances, &c, &cell_walls_info, direction, direction, &update_stack);
       lockInterruptDisable_TIM3();
-      motorMovement(direction);
+//      motorMovement(direction);
       wallFavor();
       custom_delay(1000);
       shortestPath(&distances, &c, &cell_walls_info, direction, direction, &update_stack);

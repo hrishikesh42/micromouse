@@ -41,13 +41,13 @@ void leftMotorPWMChangeForward(float value)
 	HAL_TIM_PWM_Init(&htim4);
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 	// PWM is relative based on the two channels so set 2nd channel to 0
 	sConfigOC.Pulse = 0;
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
@@ -69,13 +69,13 @@ void rightMotorPWMChangeForward(float value)
 	HAL_TIM_PWM_Init(&htim4);
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 	// PWM is relative based on the two channels so set 2nd channel to 0
 	sConfigOC.Pulse = value;
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
@@ -95,13 +95,13 @@ void leftMotorPWMChangeBackward(float value)
 	HAL_TIM_PWM_Init(&htim4);
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 	// PWM is relative based on the two channels so set 2nd channel to 0
 	sConfigOC.Pulse = value;
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2);
@@ -121,13 +121,13 @@ void rightMotorPWMChangeBackward(float value)
 	HAL_TIM_PWM_Init(&htim4);
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 	// PWM is relative based on the two channels so set 2nd channel to 0
 	sConfigOC.Pulse = 0;
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
 	{
-		_Error_Handler(__FILE__, __LINE__);
+//		_Error_Handler(__FILE__, __LINE__);
 	}
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_3);
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
