@@ -9,7 +9,7 @@
 #ifndef __encoder_H
 #define __encoder_H
 
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 #include "stm32f4xx_hal_tim.h"
 #include "tim.h"
 #include "pdT.h"

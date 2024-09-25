@@ -10,7 +10,7 @@
 #define __spi_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 
 #define IMU_CS_Pin GPIO_PIN_8
 

@@ -10,7 +10,7 @@
 #define __adc_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 #include "dma.h"
 
 /* Calibration for the ADC sensors, lower value -> see further */

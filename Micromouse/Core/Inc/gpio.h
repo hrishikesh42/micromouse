@@ -10,7 +10,7 @@
 #define __gpio_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 
 void MX_GPIO_Init(void);
 void emitter_Init(void);

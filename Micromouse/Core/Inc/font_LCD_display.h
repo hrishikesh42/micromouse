@@ -2,7 +2,7 @@
 #ifndef FONT5X7_H
 #define FONT5X7_H
 
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 #include "pgmspace.h"
 
 #define LEDDISPLAY_MAXCHARS 32

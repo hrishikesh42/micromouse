@@ -9,7 +9,7 @@
 #define __pdV_H
 
 // Positional PD controller feeds into the Velocity PD controller
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 #include "adc.h"
 #include "motors.h"
 #include "pdT.h"

@@ -12,7 +12,7 @@
 #define PWM_TIMER_PRESCALE 83
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 #include "encoder.h"
 
 extern TIM_HandleTypeDef htim2;

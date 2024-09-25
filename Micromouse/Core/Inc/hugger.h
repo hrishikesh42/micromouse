@@ -9,7 +9,7 @@
 #define __HUGGER_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 #include "motors.h"
 #include "adc.h"
 #include "pdT.h"

@@ -9,7 +9,7 @@
 #define __LOCK_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 
 void lockInterruptDisable_TIM3();
 void lockInterruptEnable_TIM3();

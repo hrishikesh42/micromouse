@@ -2,7 +2,7 @@
 #define __PGMSPACE_H_ 1
 
 #include <inttypes.h>
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 
 #define PROGMEM
 #define PGM_P  const char *
