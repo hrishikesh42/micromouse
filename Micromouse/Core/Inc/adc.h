@@ -27,14 +27,14 @@
 #define ADC_LEFT_WALL_DETECT 47
 #define ADC_RIGHT_WALL_DETECT 56
 
-extern ADC_HandleTypeDef hadc1;
+//extern ADC_HandleTypeDef hadc1;
 extern uint32_t g_ADCBuffer[];
 extern uint32_t IR_values[4];
 extern uint32_t startupSensor;
 
 void MX_ADC1_Init(void);
 void ADC_IRQHandler(void);
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle);
+//void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle);
 void ADC_LED_Distance_Tester(void);
 
 // Get sensor reading of ADC left sensor to start mouse

@@ -40,7 +40,7 @@ void resetLeftEncoder(void) {
 }
 void resetRightEncoder(void) {
 	HAL_TIM_Encoder_Stop(&htim5, TIM_CHANNEL_ALL);
-	TIM5->CNT = MAX_ENCODER_VALUE;
+	TIM1->CNT = MAX_ENCODER_VALUE;
 	HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
 }
 void advanceTicks(uint32_t ticks) {

@@ -167,7 +167,7 @@ void leftTurn(void)
 	uint32_t encoder_value = MAX_ENCODER_VALUE;
 	// Increase value of angle to turn more
 	while( angle < 32.5 || encoder_value > (MAX_ENCODER_VALUE - 6700) ) {
-		setRightEncoderValue(TIM5->CNT);
+		setRightEncoderValue(TIM1->CNT);
 		encoder_value = getRightEncoderValue();
 	}
 	motorStop();

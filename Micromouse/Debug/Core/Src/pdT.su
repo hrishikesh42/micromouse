@@ -1,0 +1,9 @@
+pdT.c:14:5:getPositionL	4	static
+pdT.c:19:5:getPositionR	4	static
+pdT.c:25:6:setPositionL	16	static
+pdT.c:30:6:setPositionR	16	static
+pdT.c:36:7:trackingLeft	32	static
+pdT.c:61:7:trackingRight	32	static
+pdT.c:84:6:trackingBothSides	48	static
+pdT.c:120:5:getBaseSpeed	4	static
+pdT.c:124:6:setBaseSpeed	16	static

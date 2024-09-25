@@ -1,0 +1,17 @@
+flood.c:10:6:init_distance_maze	48	static
+flood.c:46:6:init_wall_maze	24	static
+flood.c:67:6:init_coor	24	static
+flood.c:73:13:pop_stack	16	static
+flood.c:79:6:push_stack	24	static
+flood.c:86:6:advanceTicksFlood	72	static
+flood.c:154:5:floodFill	56	static
+flood.c:321:6:checkForWalls	24	static
+flood.c:378:5:minusOneNeighbor	56	static
+flood.c:471:6:showCoor	64	static
+flood.c:513:6:turnOnCenterLEDS	8	static
+flood.c:520:6:turnOffCenterLEDS	8	static
+flood.c:528:6:advanceOneCell	24	static
+flood.c:541:6:advanceOneCellVisited	8	static
+flood.c:555:5:centerMovement	32	static
+flood.c:762:5:logicalFlood	64	static
+flood.c:832:6:shortestPath	48	static

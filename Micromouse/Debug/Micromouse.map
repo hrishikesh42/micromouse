@@ -1,0 +1,68 @@
+Archive member included to satisfy reference by file (symbol)
+
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-errno.o)
+                              ./Core/Src/syscalls.o (__errno)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-exit.o)
+                              C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o (exit)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-impure.o)
+                              C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-exit.o) (_global_impure_ptr)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-init.o)
+                              C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o (__libc_init_array)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(lib_a-memset.o)
+                              C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/crt0.o (memset)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7-m/nofp\libgcc.a(_arm_mulsf3.o)
+                              ./Core/Src/pdT.o (__aeabi_fmul)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7-m/nofp\libgcc.a(_arm_addsubsf3.o)
+                              ./Core/Src/pdV.o (__aeabi_fsub)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7-m/nofp\libgcc.a(_arm_cmpsf2.o)
+                              ./Core/Src/motors.o (__aeabi_fcmplt)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7-m/nofp\libgcc.a(_arm_fixsfsi.o)
+                              ./Core/Src/pdV.o (__aeabi_f2iz)
+C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.9-2020-q2-update.win32_2.1.200.202402032213/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7-m/nofp\libgcc.a(_arm_fixunssfsi.o)
+                              ./Core/Src/motors.o (__aeabi_f2uiz)
+
+Allocating common symbols
+Common symbol       size              file
+
+time_of_delay       0x4               ./Core/Src/tim.o
+startupSensorLF     0x4               ./Core/Src/adc.o
+IR_values           0x10              ./Core/Src/adc.o
+delay_flag          0x4               ./Core/Src/tim.o
+move_queue          0x804             ./Core/Src/main.o
+htim4               0x40              ./Core/Src/tim.o
+ADC_RF              0x4               ./Core/Src/adc.o
+htim10              0x40              ./Core/Src/tim.o
+base_speed          0x4               ./Core/Src/pdT.o
+leftIntegral        0x4               ./Core/Src/pdV.o
+startupSensorL      0x4               ./Core/Src/adc.o
+g_DmaHandle         0x44              ./Core/Src/dma.o
+dotRegister         0xa0              ./Core/Src/LED_Display.o
+startupSensorRF     0x4               ./Core/Src/adc.o
+uwTick              0x4               ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+leftEncoderValue    0x4               ./Core/Src/encoder.o
+pFlash              0x20              ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.o
+rightVelocityOldError
+                    0x4               ./Core/Src/pdV.o
+htim5               0x40              ./Core/Src/tim.o
+update_stack        0x804             ./Core/Src/main.o
+htim3               0x40              ./Core/Src/tim.o
+rightPositionOldError
+                    0x4               ./Core/Src/pdT.o
+htim11              0x40              ./Core/Src/tim.o
+rightEncoderValue   0x4               ./Core/Src/encoder.o
+leftDutyCycle       0x4               ./Core/Src/motors.o
+startupSensorR      0x4               ./Core/Src/adc.o
+rightDutyCycle      0x4               ./Core/Src/motors.o
+leftPositionOldError
+                    0x4               ./Core/Src/pdT.o
+algorithm           0x4               ./Core/Src/main.o
+rightIntegral       0x4               ./Core/Src/pdV.o
+leftVelocityOldError
+                    0x4               ./Core/Src/pdV.o
+cell_walls_info     0x500             ./Core/Src/main.o
+g_ADCBuffer         0x8000            ./Core/Src/adc.o
+ADC_LF              0x4               ./Core/Src/adc.o
+htim2               0x40              ./Core/Src/tim.o
+ADC_R               0x4               ./Core/Src/adc.o
+distances           0x400             ./Core/Src/main.o
+ADC_L               0x4               ./Core/Src/adc.o

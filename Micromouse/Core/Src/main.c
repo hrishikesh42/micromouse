@@ -20,15 +20,23 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
+#include "stm32f1xx_hal.h"
+#include "gpio.h"
+#include "adc.h"
+#include "dma.h"
+#include "LED_Display.h"
+#include "motors.h"
+#include "spi.h"
+#include "tim.h"
+#include "encoder.h"
+#include "pdT.h"
+#include "pdV.h"
+#include "hugger.h"
+#include "lock.h"
+#include "flood.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -37,27 +45,35 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-TIM_HandleTypeDef htim4;
+uint32_t leftTicks = 0;
+uint32_t rightTicks = 0;
 
-/* USER CODE BEGIN PV */
+float left_velocity = 0;
+float right_velocity = 0;
+float angle = 0;
 
-/* USER CODE END PV */
+int left_counts = 0;
+int left_last_counts = 0;
+int right_counts = 0;
+int right_last_counts = 0;
+float inst_yaw = 0;
+
+int algorithm;
+struct dist_maze distances;
+struct wall_maze cell_walls_info;
+struct stack update_stack;
+struct stack move_queue;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_TIM4_Init(void);
 /* USER CODE BEGIN PFP */
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 /* USER CODE END 0 */
 
 /**
@@ -67,7 +83,6 @@ static void MX_TIM4_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -76,30 +91,106 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_ADC1_Init();
+  MX_TIM2_Init();
   MX_TIM4_Init();
-  /* USER CODE BEGIN 2 */
+  MX_TIM5_Init();
+  MX_TIM10_Init();
+  MX_DMA_Init();
 
+  /* USER CODE BEGIN 2 */
+  emitter_Init();
+  algorithm = mouseStartSensorWave();
+  custom_delay(1000);
+  setPositionL(0);
+  setPositionR(0);
+  setIntegralL(0);
+  setIntegralR(0);
+  leftMotorStart();
+  rightMotorStart();
+
+  MX_TIM11_Init();
+  MX_SPI2_Init();
+  Init_IMU();
+  encoderStart();
+  resetLeftEncoder();
+  resetRightEncoder();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+    if (algorithm == 2)
+    {
+      // Floodfill
+      algorithm = wallFavor();
+      HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
+      HAL_Delay(1000);
 
-    /* USER CODE BEGIN 3 */
+      struct coor target;
+      init_coor(&target, 8, 7);
+      init_distance_maze(&distances, &target, 1);
+      init_wall_maze(&cell_walls_info);
+      cell_walls_info.cells[0][0].walls[EAST] = 1;
+      cell_walls_info.cells[0][0].walls[SOUTH] = 1;
+      cell_walls_info.cells[0][0].walls[WEST] = 1;
+
+      struct coor c;
+      init_coor(&c, 0, 0);
+      MX_TIM3_Init();
+      int direction = NORTH;
+      update_stack.index = 0;
+      direction = floodFill(&distances, &c, &cell_walls_info, algorithm, direction, &update_stack);
+      direction = centerMovement(&cell_walls_info, &c, direction);
+
+      init_coor(&target, 0, 0);
+      init_distance_maze(&distances, &target, 0);
+      logicalFlood(&distances, &c, &cell_walls_info, direction, direction, &update_stack);
+      direction = floodFill(&distances, &c, &cell_walls_info, direction, direction, &update_stack);
+      direction = adjustDirection(direction);
+      init_distance_maze(&distances, &c, 1);
+      logicalFlood(&distances, &c, &cell_walls_info, direction, direction, &update_stack);
+      lockInterruptDisable_TIM3();
+      motorMovement(direction);
+      wallFavor();
+      custom_delay(1000);
+      shortestPath(&distances, &c, &cell_walls_info, direction, direction, &update_stack);
+      motorStop();
+      turnOnLEDS();
+      HAL_Delay(3000);
+    }
+    else if (algorithm == 1)
+    {
+      // Right wall hugger
+      MX_TIM3_Init();
+      while (1)
+      {
+        setBaseSpeed(40);
+        rightWallHugger();
+      }
+    }
+    else if (algorithm == 0)
+    {
+      // Left wall hugger
+      MX_TIM3_Init();
+      while (1)
+      {
+        setBaseSpeed(40);
+        leftWallHugger();
+      }
+    }
+    /* USER CODE END WHILE */
   }
   /* USER CODE END 3 */
 }
@@ -113,119 +204,44 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
+  /** Configure the main internal regulator output voltage
+  */
+  __HAL_RCC_PWR_CLK_ENABLE();
+//  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+
   /** Initializes the CPU, AHB and APB busses clocks
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  RCC_OscInitStruct.HSICalibrationValue = 16;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
+
   /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
-}
 
-/**
-  * @brief TIM4 Initialization Function
-  * @param None
-  * @retval None
+  /** Configure the Systick interrupt time
   */
-static void MX_TIM4_Init(void)
-{
+  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
+  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
-  /* USER CODE BEGIN TIM4_Init 0 */
-
-  /* USER CODE END TIM4_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-
-  /* USER CODE BEGIN TIM4_Init 1 */
-
-  /* USER CODE END TIM4_Init 1 */
-  htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 1;
-  htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 500;
-  htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim4, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Init(&htim4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 350;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM4_Init 2 */
-
-  /* USER CODE END TIM4_Init 2 */
-  HAL_TIM_MspPostInit(&htim4);
-
+  /* SysTick_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
-
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-
-  /*Configure GPIO pin : PC13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-}
-
-/* USER CODE BEGIN 4 */
-
-/* USER CODE END 4 */
 
 /**
   * @brief  This function is executed in case of error occurrence.
@@ -234,26 +250,8 @@ static void MX_GPIO_Init(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-
+  while (1)
+  {
+  }
   /* USER CODE END Error_Handler_Debug */
 }
-
-#ifdef  USE_FULL_ASSERT
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t *file, uint32_t line)
-{
-  /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
-}
-#endif /* USE_FULL_ASSERT */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

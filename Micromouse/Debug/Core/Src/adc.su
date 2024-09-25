@@ -1,0 +1,11 @@
+adc.c:30:6:MX_ADC1_Init	4	static
+adc.c:89:6:ADC_IRQHandler	4	static
+adc.c:137:6:ADC_LED_Distance_Tester	8	static
+adc.c:175:6:ADC_LED_DEBUG	16	static
+adc.c:201:10:getLeftADCValue	4	static
+adc.c:206:10:getLeftFrontADCValue	4	static
+adc.c:211:10:getRightFrontADCValue	4	static
+adc.c:216:10:getRightADCValue	4	static
+adc.c:236:5:mouseStartSensorWave	8	static
+adc.c:272:5:wallFavor	8	static
+adc.c:285:10:startMouseSensor	4	static

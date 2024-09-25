@@ -161,66 +161,66 @@ void MX_TIM4_Init(void)
 /* TIM5 init function */
 void MX_TIM5_Init(void)
 {
-	TIM_Encoder_InitTypeDef sConfig;
-	TIM_MasterConfigTypeDef sMasterConfig;
-
-	htim5.Instance = TIM5;
-	htim5.Init.Prescaler = 0;
-	htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim5.Init.Period = 0xFFFFFFFF;
-	htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
-	sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
-	sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
-	sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
-	sConfig.IC1Filter = 5;
-	sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
-	sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
-	sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
-	sConfig.IC2Filter = 5;
-	if (HAL_TIM_Encoder_Init(&htim5, &sConfig) != HAL_OK)
-	{
-		_Error_Handler(__FILE__, __LINE__);
-	}
-
-	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-	if (HAL_TIMEx_MasterConfigSynchronization(&htim5, &sMasterConfig) != HAL_OK)
-	{
-		_Error_Handler(__FILE__, __LINE__);
-	}
+//	TIM_Encoder_InitTypeDef sConfig;
+//	TIM_MasterConfigTypeDef sMasterConfig;
+//
+//	htim5.Instance = TIM5;
+//	htim5.Init.Prescaler = 0;
+//	htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
+//	htim5.Init.Period = 0xFFFFFFFF;
+//	htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+//	sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
+//	sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+//	sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+//	sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+//	sConfig.IC1Filter = 5;
+//	sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+//	sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+//	sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+//	sConfig.IC2Filter = 5;
+//	if (HAL_TIM_Encoder_Init(&htim5, &sConfig) != HAL_OK)
+//	{
+//		_Error_Handler(__FILE__, __LINE__);
+//	}
+//
+//	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+//	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+//	if (HAL_TIMEx_MasterConfigSynchronization(&htim5, &sMasterConfig) != HAL_OK)
+//	{
+//		_Error_Handler(__FILE__, __LINE__);
+//	}
 }
 
 // THIS IS A SOFTWARE TIMER
 void MX_TIM11_Init(void)
 {
-    htim11.Instance = TIM11;
-    htim11.Init.Prescaler = 83;
-    htim11.Init.CounterMode = TIM_COUNTERMODE_UP;
-    // Sample 1000 Hz
-    htim11.Init.Period = 25;
-    htim11.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-
-    if (HAL_TIM_Base_Init(&htim11) != HAL_OK)
-    {
-        Error_Handler();
-    }
+//    htim11.Instance = TIM11;
+//    htim11.Init.Prescaler = 83;
+//    htim11.Init.CounterMode = TIM_COUNTERMODE_UP;
+//    // Sample 1000 Hz
+//    htim11.Init.Period = 25;
+//    htim11.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+//
+//    if (HAL_TIM_Base_Init(&htim11) != HAL_OK)
+//    {
+//        Error_Handler();
+//    }
 }
 
 void MX_TIM10_Init(void)
 {
-    htim10.Instance = TIM10;
-    htim10.Init.Prescaler = 15;
-    htim10.Init.CounterMode = TIM_COUNTERMODE_UP;
-    // Sample 1000 Hz
-    htim10.Init.Period = 1000;
-    htim10.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-
-    if (HAL_TIM_Base_Init(&htim10) != HAL_OK)
-    {
-        Error_Handler();
-    }
-    HAL_TIM_Base_Start_IT(&htim10);
+//    htim10.Instance = TIM10;
+//    htim10.Init.Prescaler = 15;
+//    htim10.Init.CounterMode = TIM_COUNTERMODE_UP;
+//    // Sample 1000 Hz
+//    htim10.Init.Period = 1000;
+//    htim10.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+//
+//    if (HAL_TIM_Base_Init(&htim10) != HAL_OK)
+//    {
+//        Error_Handler();
+//    }
+//    HAL_TIM_Base_Start_IT(&htim10);
 }
 
 void custom_delay(int milliseconds)

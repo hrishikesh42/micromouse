@@ -21,7 +21,16 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
+ ../Core/Inc/gpio.h ../Core/Inc/adc.h ../Core/Inc/dma.h ../Core/Inc/adc.h \
+ ../Core/Inc/dma.h ../Core/Inc/LED_Display.h \
+ ../Core/Inc/font_LCD_Display.h ../Core/Inc/pgmspace.h \
+ ../Core/Inc/motors.h ../Core/Inc/spi.h ../Core/Inc/tim.h \
+ ../Core/Inc/encoder.h ../Core/Inc/tim.h ../Core/Inc/pdT.h \
+ ../Core/Inc/motors.h ../Core/Inc/pdV.h ../Core/Inc/gpio.h \
+ ../Core/Inc/hugger.h ../Core/Inc/lock.h ../Core/Inc/encoder.h \
+ ../Core/Inc/pdT.h ../Core/Inc/pdV.h ../Core/Inc/hugger.h \
+ ../Core/Inc/lock.h ../Core/Inc/flood.h
 
 ../Core/Inc/main.h:
 
@@ -70,3 +79,53 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
+
+../Core/Inc/gpio.h:
+
+../Core/Inc/adc.h:
+
+../Core/Inc/dma.h:
+
+../Core/Inc/adc.h:
+
+../Core/Inc/dma.h:
+
+../Core/Inc/LED_Display.h:
+
+../Core/Inc/font_LCD_Display.h:
+
+../Core/Inc/pgmspace.h:
+
+../Core/Inc/motors.h:
+
+../Core/Inc/spi.h:
+
+../Core/Inc/tim.h:
+
+../Core/Inc/encoder.h:
+
+../Core/Inc/tim.h:
+
+../Core/Inc/pdT.h:
+
+../Core/Inc/motors.h:
+
+../Core/Inc/pdV.h:
+
+../Core/Inc/gpio.h:
+
+../Core/Inc/hugger.h:
+
+../Core/Inc/lock.h:
+
+../Core/Inc/encoder.h:
+
+../Core/Inc/pdT.h:
+
+../Core/Inc/pdV.h:
+
+../Core/Inc/hugger.h:
+
+../Core/Inc/lock.h:
+
+../Core/Inc/flood.h:

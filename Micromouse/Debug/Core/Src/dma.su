@@ -1,0 +1,2 @@
+dma.c:12:6:MX_DMA_Init	4	static
+dma.c:40:6:DMA2_Stream4_IRQHandler	8	static
