@@ -19,21 +19,49 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "SysInit.h"
+#include "PWM.h"
+#include "ADC.h"
+#include "UART.h"
+#include "GPIO.h"
 
+int adc_value = 0;
 
 int main(void)
 {
 
 	//SYSINIT
-	  HAL_Init();
-	  SystemClock_Config();
-	  MX_GPIO_Init();
+	HAL_Init();
+	SystemClock_Config();
+	MX_GPIO_Init();
 
+	//PWM
+	PWM_Init();            // Initialize PWM
+	PWM_SetDutyCycle(50);  // Set duty cycle to 50%
+	PWM_Start();           // Start PWM
 
-  while (1)
-  {
+	//ADC
+	ADC_Init();           // Initialize the ADC
 
-  }
+	//UART
+	UART_Init(9600);         // Initialize UART with baud rate 9600
+	UART_SendString("Hello, UART!\n"); // Send a string via UART
+
+	//GPIO
+    GPIO_Init_Output(GPIOA, 5);  // Initialize PA5 as output (for LED)
+    GPIO_Init_Input(GPIOA, 0);   // Initialize PA0 as input (for button)
+
+    //I2C
+    I2C_Init();             // Initialize I2C
+    uint8_t data = I2C_Read(0xA0);  // Read a byte from slave device with address 0xA0
+    I2C_Write(0xA0, 0x55);          // Write 0x55 to slave device with address 0xA0
+
+	while (1)
+	{
+		adc_value = ADC_Read();  // Read the ADC value from PA0
+
+		uint8_t received = UART_Receive();   // Receive a byte from UART
+		UART_Transmit(&received, 1);         // Echo the received byte back
+	}
 }
 
 void Error_Handler(void)
