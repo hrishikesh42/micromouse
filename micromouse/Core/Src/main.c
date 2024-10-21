@@ -18,11 +18,14 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+
 #include "SysInit.h"
 #include "PWM.h"
 #include "ADC.h"
 #include "UART.h"
 #include "GPIO.h"
+#include "I2C.h"
+#include <stdio.h>
 
 int adc_value = 0;
 
@@ -34,33 +37,49 @@ int main(void)
 	SystemClock_Config();
 	MX_GPIO_Init();
 
-	//PWM
-	PWM_Init();            // Initialize PWM
-	PWM_SetDutyCycle(50);  // Set duty cycle to 50%
-	PWM_Start();           // Start PWM
+    // Initialize all peripherals
+    PWM_Init();                   // Initialize PWM on TIM3 (PA6)
+    ADC_Init();                   // Initialize ADC on PA0 (Channel 0)
+    UART_Init(9600);              // Initialize UART2 (PA2 TX, PA3 RX) with 9600 baud rate
+    GPIO_Init_Output(GPIOA, 5);   // Initialize PA5 as output (for LED control)
+    I2C_Init();                   // Initialize I2C1 (PB6 SCL, PB7 SDA)
 
-	//ADC
-	ADC_Init();           // Initialize the ADC
+    // Example: Read ADC and send value over UART
+    uint16_t adc_value = ADC_Read();      // Read from ADC (PA0)
+    char uart_message[20];
+    sprintf(uart_message, "ADC Value: %u\n", adc_value);  // Use sprintf to format the string
+    UART_SendString(uart_message);        // Send ADC value over UART
 
-	//UART
-	UART_Init(9600);         // Initialize UART with baud rate 9600
-	UART_SendString("Hello, UART!\n"); // Send a string via UART
+    // Example: Control PWM duty cycle based on ADC value
+    uint8_t pwm_duty = (adc_value * 100) / 4095;  // Scale ADC (0-4095) to PWM (0-100%)
+    PWM_SetDutyCycle(pwm_duty);          // Set PWM duty cycle
 
-	//GPIO
-    GPIO_Init_Output(GPIOA, 5);  // Initialize PA5 as output (for LED)
-    GPIO_Init_Input(GPIOA, 0);   // Initialize PA0 as input (for button)
+    // Example: Toggle GPIO pin (PA5)
+    GPIO_TogglePin(GPIOA, 5);            // Toggle LED (PA5)
 
-    //I2C
-    I2C_Init();             // Initialize I2C
-    uint8_t data = I2C_Read(0xA0);  // Read a byte from slave device with address 0xA0
-    I2C_Write(0xA0, 0x55);          // Write 0x55 to slave device with address 0xA0
+    // Example: I2C read/write (assuming a device at address 0xA0)
+    uint8_t i2c_data = I2C_Read(0xA0);   // Read data from I2C slave at address 0xA0
+    char i2c_message[20];
+    sprintf(i2c_message, "I2C Data: %u\n", i2c_data);  // Format the I2C data
+    UART_SendString(i2c_message);        // Send the I2C data over UART
+
+    I2C_Write(0xA0, 0x55);               // Write 0x55 to I2C slave at address 0xA0
+    UART_SendString("I2C Write Complete\n");
+
+
 
 	while (1)
 	{
-		adc_value = ADC_Read();  // Read the ADC value from PA0
+        // Continuously read ADC and adjust PWM duty cycle
+        adc_value = ADC_Read();          // Read from ADC (PA0)
+        pwm_duty = (adc_value * 100) / 4095;  // Scale ADC value to PWM
+        PWM_SetDutyCycle(pwm_duty);      // Adjust PWM based on ADC value
 
-		uint8_t received = UART_Receive();   // Receive a byte from UART
-		UART_Transmit(&received, 1);         // Echo the received byte back
+        // Toggle GPIO (LED on PA5) every loop iteration
+        GPIO_TogglePin(GPIOA, 5);        // Toggle LED
+
+        // Add a small delay to make the toggling visible
+        for (volatile int i = 0; i < 100000; i++);
 	}
 }
 
