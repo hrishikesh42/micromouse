@@ -1,25 +1,12 @@
-/*
- * i2c.h
- *
- *  Created on: Oct 21, 2024
- *      Author: danis
- */
+#ifndef I2C_UTILS_H
+#define I2C_UTILS_H
 
-#ifndef INC_I2C_H_
-#define INC_I2C_H_
+#include "stm32f4xx_hal.h"
 
-#include "stm32f4xx.h"
+// Function prototypes
+HAL_StatusTypeDef I2C_Init(I2C_HandleTypeDef *hi2c);
+HAL_StatusTypeDef I2C_Write(I2C_HandleTypeDef *hi2c, uint16_t devAddr, uint8_t *pData, uint16_t size);
+HAL_StatusTypeDef I2C_Read(I2C_HandleTypeDef *hi2c, uint16_t devAddr, uint8_t *pData, uint16_t size);
+HAL_StatusTypeDef I2C_IsDeviceReady(I2C_HandleTypeDef *hi2c, uint16_t devAddr);
 
-void I2C_Init(void);
-void I2C_Start(void);
-void I2C_Stop(void);
-void I2C_WriteAddress(uint8_t address);
-void I2C_WriteData(uint8_t data);
-uint8_t I2C_ReadData(void);
-void I2C_Ack(void);
-void I2C_Nack(void);
-uint8_t I2C_Read(uint8_t address);
-void I2C_Write(uint8_t address, uint8_t data);
-
-
-#endif /* INC_I2C_H_ */
+#endif // I2C_UTILS_H
